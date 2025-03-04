@@ -14,7 +14,8 @@ class Steganography:
         :return: A string tuple like ("00101010", "11101011", "00010110")
         """
         r, g, b = rgb
-        return f'{r:08b}', f'{g:08b}', f'{b:08b}'
+        # format (x, '08b') returns x as 8 bits with leading zeros
+        return format(r, '08b'), format(g, '08b'), format(b, '08b')
 
     def _bin_to_int(self, rgb):
         """Convert a binary (string) tuple to an integer tuple.
@@ -23,6 +24,7 @@ class Steganography:
         :return: Return an int tuple like (220, 110, 96)
         """
         r, g, b = rgb
+        # int(x, 2) converts the binary x to a decimal integer
         return int(r, 2), int(g, 2), int(b, 2)
 
     def _merge_rgb(self, rgb1, rgb2):
@@ -34,16 +36,9 @@ class Steganography:
         """
         r1, g1, b1 = self._int_to_bin(rgb1)
         r2, g2, b2 = self._int_to_bin(rgb2)
+        # x[:4]+y[:4] concatenates the first 4 characters of x with the first 4 characters of y
         rgb = r1[:4] + r2[:4], g1[:4] + g2[:4], b1[:4] + b2[:4]
         return self._bin_to_int(rgb)
-
-    def _unmerge_rgb(self, rgb):
-        """Unmerge RGB.
-
-        :param rgb: An integer tuple like (220, 110, 96)
-        :return: An integer tuple with the two RGB values merged.
-        """
-        # TODO: Implement this function
 
     def merge(self, image1, image2):
         """Merge image2 into image1.
@@ -72,13 +67,21 @@ class Steganography:
 
         return new_image
 
+    def _unmerge_rgb(self, rgb):
+        """Unmerge RGB.
+
+        :param rgb: An integer tuple like (220, 110, 96)
+        :return: An integer tuple with the two RGB values merged.
+        """
+        # TODO: implement this function
+
     def unmerge(self, image):
         """Unmerge an image.
 
         :param image: The input image.
         :return: The unmerged/extracted image.
         """
-        # TODO: Implement this function
+        # TODO: implement this function
 
 def main():
     parser = argparse.ArgumentParser(description='Steganography')
