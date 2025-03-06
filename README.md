@@ -1,8 +1,13 @@
 # steganography
 - Install Python, Pillow and Click.
-- To hide `answers1.png` in `challenge1.png`, run `python steganography.py merge --image1=challenge1.jpg --image2=solutions1.jpg --output=hidden1.jpg`
-- To recover the hidden image, run `python steganography.py unmerge --image=hidden1.png --output=recovered_solutions1.jpg`
-
+- To hide `solution1.png` in `challenge1.png` and store it in `hidden1.png` (all images in `img/` directory), run:
+```bash
+python steganography.py merge --image1=img/challenge1.png --image2=img/solutions1.png --output=img/hidden1.png
+```
+- To recover the hidden image and store it in `img/`, run:
+```bash
+    python steganography.py unmerge --image=img/hidden1.png --output=recovered1.png
+```
 **N.B.!** You will need to write the functions `_unmerge_rgb` and `unmerge` in `steganography.py` to extract the hidden image.
 
 # PIL
@@ -12,11 +17,11 @@ An image is an array of pixels, where each pixel is an array of three values (re
 
 ```python
 from PIL import Image
-# Open the image file stored in the current directory
-image = Image.open('./image.jpg')
+# Open the image file stored in the img/ directory
+image = Image.open('img/challenge1.png')
 # Get the array of pixels forming the image
 map = image.load()
 # Get the the image dimensions
 height, width = image.size[0], image.size[1]
 ```
-![screenshot](rgb.jpg)
+![screenshot](img/rgb.png)

@@ -36,8 +36,8 @@ class Steganography:
         """
         r1, g1, b1 = self._int_to_bin(rgb1)
         r2, g2, b2 = self._int_to_bin(rgb2)
-        # x[:4]+y[:4] concatenates the first 4 characters of x with the first 4 characters of y
-        rgb = r1[:4] + r2[:4], g1[:4] + g2[:4], b1[:4] + b2[:4]
+        # x[:6]+y[:2] concatenates the first 6 characters of x with the first 2 characters of y
+        rgb = r1[:6] + r2[:2], g1[:6] + g2[:2], b1[:6] + b2[:2]
         return self._bin_to_int(rgb)
 
     def merge(self, image1, image2):
